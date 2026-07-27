@@ -51,11 +51,21 @@ All business data lives in **`lib/`** so you edit content in one place, not acro
 | Blog posts | `lib/blog.ts` | Add cost guides / comparisons; each generates a post. |
 | Testimonials | `lib/content.ts` | ⚠️ Replace the placeholder reviews with **real** ones (schema only uses aggregate). |
 
-### Wire up the quote form
-`components/QuoteForm.tsx` currently opens the visitor's email client with the lead pre-filled
-(nothing is ever lost). To capture leads directly, point it at a real endpoint —
-[Formspree](https://formspree.io), [Web3Forms](https://web3forms.com), a Vercel serverless route,
-or your CRM — by replacing the `handleSubmit` logic.
+### Wire up the quote form (email leads via Formspree)
+The form is already coded to send leads to **Formspree** (free, no domain/DNS setup, and it keeps
+a dashboard of every submission). To turn it on:
+
+1. Create a free account at **[formspree.io](https://formspree.io)** and add a new form.
+2. Set the form's notification email to where you want leads (e.g. `tridancontractor@gmail.com`).
+3. Copy the form endpoint it gives you — it looks like `https://formspree.io/f/abcdwxyz`.
+4. Paste it into `lib/site.ts` → `formspreeEndpoint: '...'` (or set `NEXT_PUBLIC_FORMSPREE_ENDPOINT`
+   in Vercel → Settings → Environment Variables), then redeploy.
+5. Submit the form once to activate it, and if the first email lands in Junk/Spam, mark it
+   **"Not spam"** and add the sender to Safe Senders so future leads hit your inbox.
+
+The customer's email is sent as the **reply-to**, so you can just hit Reply to answer a lead.
+Until an endpoint is set, the form safely falls back to opening the visitor's email app, so a lead
+is never lost.
 
 ### Images
 Service/area imagery uses the **Unsplash CDN** (fast AVIF/WebP). Swap in your **own project photos**

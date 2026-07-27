@@ -20,8 +20,12 @@ type Props = {
  * handleSubmit body with a real endpoint (Formspree, Web3Forms, a Vercel route)
  * to capture leads directly.
  */
+const FORMSPREE_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || site.formspreeEndpoint || '';
+
 export default function QuoteForm({ compact = false, defaultService, defaultCity }: Props) {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -33,18 +37,53 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
   const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
   const canSubmit = form.name.trim() && form.phone.trim() && form.email.trim() && form.message.trim();
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!canSubmit) return;
+  function mailtoFallback() {
     const body = encodeURIComponent(
       `New quote request\n\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\n` +
         `Service: ${form.service || 'Not specified'}\n${defaultCity ? `City: ${defaultCity}\n` : ''}` +
-        `\nMessage:\n${form.message || '(none)'}`,
+        `\nMessage:\n${form.message}`,
     );
     window.location.href = `${site.emailHref}?subject=${encodeURIComponent(
       'Free Quote Request' + (form.service ? ' — ' + form.service : ''),
     )}&body=${body}`;
     setSubmitted(true);
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!canSubmit || sending) return;
+
+    // No endpoint configured yet -> open the visitor's email app (never lose a lead).
+    if (!FORMSPREE_ENDPOINT) {
+      mailtoFallback();
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          email: form.email, // Formspree uses this as the reply-to address
+          service: form.service || 'Not specified',
+          ...(defaultCity ? { city: defaultCity } : {}),
+          message: form.message,
+          _subject: 'New Quote Request' + (form.service ? ' — ' + form.service : ''),
+        }),
+      });
+      setSending(false);
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        mailtoFallback();
+      }
+    } catch {
+      setSending(false);
+      mailtoFallback();
+    }
   }
 
   if (submitted) {
@@ -148,10 +187,14 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
 
         <button
           type="submit"
-          disabled={!canSubmit}
+          disabled={!canSubmit || sending}
           className="btn-gold w-full disabled:cursor-not-allowed disabled:opacity-40"
         >
-          Get My Free Quote <Icon name="arrow" size={18} />
+          {sending ? 'Sending…' : (
+            <>
+              Get My Free Quote <Icon name="arrow" size={18} />
+            </>
+          )}
         </button>
         <p className="text-center text-[0.7rem] text-ink-600/60">
           No obligation. Your details are only used to prepare your quote.
