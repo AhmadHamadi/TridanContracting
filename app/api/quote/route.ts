@@ -54,32 +54,59 @@ export async function POST(req: Request) {
 
   const service = (data.service || 'Not specified').trim();
   const city = (data.city || '').trim();
-  const lines = [
-    `Name: ${name}`,
-    `Phone: ${phone}`,
-    `Email: ${email}`,
+
+  const text = [
+    'New quote request from the Tridan Contracting website.',
+    '',
+    `Name:    ${name}`,
+    `Phone:   ${phone}`,
+    `Email:   ${email}`,
     `Service: ${service}`,
-    ...(city ? [`City: ${city}`] : []),
-    ``,
-    `Message:`,
+    ...(city ? [`City:    ${city}`] : []),
+    '',
+    'Message:',
     message,
-  ];
+    '',
+    `Reply to this email to respond directly to ${name}.`,
+  ].join('\n');
+
+  const row = (label: string, value: string) =>
+    `<tr><td style="padding:7px 0;color:#666;width:84px;vertical-align:top">${label}</td>` +
+    `<td style="padding:7px 0;font-weight:600;color:#0a0a0a">${value}</td></tr>`;
+
+  const html = `
+  <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto">
+    <div style="background:#0a0a0a;color:#fff;padding:18px 22px;border-radius:10px 10px 0 0">
+      <div style="font-size:18px;font-weight:700">New Quote Request</div>
+      <div style="font-size:13px;color:#c7cad1;margin-top:2px">From the Tridan Contracting website</div>
+    </div>
+    <div style="border:1px solid #eee;border-top:none;border-radius:0 0 10px 10px;padding:20px 22px">
+      <p style="margin:0 0 14px;font-size:14px;color:#0a0a0a">You have a new lead 👇</p>
+      <table style="width:100%;border-collapse:collapse;font-size:14px">
+        ${row('Name', esc(name))}
+        ${row('Phone', `<a href="tel:${esc(phone)}" style="color:#9E7E15;text-decoration:none">${esc(phone)}</a>`)}
+        ${row('Email', `<a href="mailto:${esc(email)}" style="color:#9E7E15;text-decoration:none">${esc(email)}</a>`)}
+        ${row('Service', esc(service))}
+        ${city ? row('City', esc(city)) : ''}
+      </table>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid #eee">
+        <div style="color:#666;font-size:13px;margin-bottom:6px">Message</div>
+        <div style="font-size:14px;line-height:1.6;color:#0a0a0a">${esc(message).replace(/\n/g, '<br>')}</div>
+      </div>
+      <p style="margin:18px 0 0;font-size:13px;color:#666">
+        Just hit <b>Reply</b> to respond directly to ${esc(name)}.
+      </p>
+    </div>
+  </div>`;
 
   try {
     await transporter.sendMail({
       from: `"Tridan Website Lead" <${LEAD_FROM || SMTP_USER}>`,
       to: LEAD_TO,
       replyTo: `"${name}" <${email}>`, // hitting Reply answers the customer
-      subject: `New Quote Request${service && service !== 'Not specified' ? ' — ' + service : ''}`,
-      text: lines.join('\n'),
-      html: `<h2>New Quote Request</h2><table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px">
-        <tr><td><b>Name</b></td><td>${esc(name)}</td></tr>
-        <tr><td><b>Phone</b></td><td>${esc(phone)}</td></tr>
-        <tr><td><b>Email</b></td><td>${esc(email)}</td></tr>
-        <tr><td><b>Service</b></td><td>${esc(service)}</td></tr>
-        ${city ? `<tr><td><b>City</b></td><td>${esc(city)}</td></tr>` : ''}
-        <tr><td valign="top"><b>Message</b></td><td>${esc(message).replace(/\n/g, '<br>')}</td></tr>
-      </table>`,
+      subject: `New Quote Request${service && service !== 'Not specified' ? ' — ' + service : ''} (from ${name})`,
+      text,
+      html,
     });
     return Response.json({ ok: true });
   } catch (err) {

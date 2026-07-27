@@ -19,8 +19,10 @@ type Props = {
  * Formspree/Formsubmit). Otherwise it opens the visitor's email client with the
  * details pre-filled (a mailto fallback so a lead is never lost).
  */
-// Leads are sent by our own serverless route (app/api/quote) via SMTP.
-const ENDPOINT = '/api/quote';
+// Leads go to the configured form service (Basin) if set, otherwise to our own
+// serverless SMTP route (app/api/quote). Either way, a mailto fallback runs if
+// the request fails, so a lead is never lost.
+const ENDPOINT = site.formEndpoint || '/api/quote';
 
 export default function QuoteForm({ compact = false, defaultService, defaultCity }: Props) {
   const [submitted, setSubmitted] = useState(false);
