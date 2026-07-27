@@ -1,6 +1,7 @@
-import nodemailer from 'nodemailer';
-
-// Nodemailer needs the Node.js runtime (not Edge).
+// Sends quote-form leads via the Resend API (https://resend.com).
+// Reusable across client sites: verify ONE sending domain in Resend, then set
+// RESEND_API_KEY + LEAD_FROM (an address on that domain) + LEAD_TO (the client's
+// inbox) per site. No email ever routes through the agency.
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
@@ -11,8 +12,7 @@ type Lead = {
   service?: string;
   city?: string;
   message?: string;
-  // Honeypot: real users leave this empty; bots often fill it.
-  company?: string;
+  company?: string; // honeypot
 };
 
 const esc = (s = '') =>
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, reason: 'bad_request' }, { status: 400 });
   }
 
-  // Silently accept bot submissions (honeypot) without sending.
+  // Honeypot: silently accept bot submissions without sending.
   if (data.company) return Response.json({ ok: true });
 
   const name = (data.name || '').trim();
@@ -37,26 +37,17 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, reason: 'missing_fields' }, { status: 422 });
   }
 
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, LEAD_TO, LEAD_FROM } = process.env;
-
-  // Not configured yet -> tell the client so it can fall back to mailto.
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !LEAD_TO) {
+  const { RESEND_API_KEY, LEAD_FROM, LEAD_TO } = process.env;
+  // Not configured yet -> tell the client so the form falls back to mailto.
+  if (!RESEND_API_KEY || !LEAD_FROM || !LEAD_TO) {
     return Response.json({ ok: false, reason: 'not_configured' }, { status: 501 });
   }
-
-  const port = Number(SMTP_PORT || 587);
-  const transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port,
-    secure: port === 465, // 465 = implicit TLS; 587 = STARTTLS
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
-  });
 
   const service = (data.service || 'Not specified').trim();
   const city = (data.city || '').trim();
 
   const text = [
-    'New quote request from the Tridan Contracting website.',
+    'New quote request from the website.',
     '',
     `Name:    ${name}`,
     `Phone:   ${phone}`,
@@ -78,7 +69,7 @@ export async function POST(req: Request) {
   <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto">
     <div style="background:#0a0a0a;color:#fff;padding:18px 22px;border-radius:10px 10px 0 0">
       <div style="font-size:18px;font-weight:700">New Quote Request</div>
-      <div style="font-size:13px;color:#c7cad1;margin-top:2px">From the Tridan Contracting website</div>
+      <div style="font-size:13px;color:#c7cad1;margin-top:2px">From your website</div>
     </div>
     <div style="border:1px solid #eee;border-top:none;border-radius:0 0 10px 10px;padding:20px 22px">
       <p style="margin:0 0 14px;font-size:14px;color:#0a0a0a">You have a new lead 👇</p>
@@ -100,17 +91,27 @@ export async function POST(req: Request) {
   </div>`;
 
   try {
-    await transporter.sendMail({
-      from: `"Tridan Website Lead" <${LEAD_FROM || SMTP_USER}>`,
-      to: LEAD_TO,
-      replyTo: `"${name}" <${email}>`, // hitting Reply answers the customer
-      subject: `New Quote Request${service && service !== 'Not specified' ? ' — ' + service : ''} (from ${name})`,
-      text,
-      html,
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: LEAD_FROM, // e.g. "Website Leads <leads@yourdomain.com>" (on your verified domain)
+        to: [LEAD_TO], // the client's inbox
+        reply_to: `${name} <${email}>`, // Reply goes straight to the customer
+        subject: `New Quote Request${service && service !== 'Not specified' ? ' — ' + service : ''} (from ${name})`,
+        text,
+        html,
+      }),
     });
-    return Response.json({ ok: true });
+    if (res.ok) return Response.json({ ok: true });
+    const detail = await res.text();
+    console.error('Resend send failed:', res.status, detail);
+    return Response.json({ ok: false, reason: 'send_failed' }, { status: 502 });
   } catch (err) {
-    console.error('Lead email failed:', err);
+    console.error('Resend request error:', err);
     return Response.json({ ok: false, reason: 'send_failed' }, { status: 502 });
   }
 }

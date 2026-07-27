@@ -51,28 +51,39 @@ All business data lives in **`lib/`** so you edit content in one place, not acro
 | Blog posts | `lib/blog.ts` | Add cost guides / comparisons; each generates a post. |
 | Testimonials | `lib/content.ts` | ⚠️ Replace the placeholder reviews with **real** ones (schema only uses aggregate). |
 
-### Wire up the quote form (email leads via your own SMTP)
-The form POSTs to a serverless route (`app/api/quote/route.ts`) that emails the lead **from your own
-mailbox** (Outlook / GoDaddy / any SMTP) to wherever you choose — no third-party form service, no
-recipient verification. Set these as **server-side env vars in Vercel** (Settings → Environment
-Variables), then redeploy:
+### Wire up the quote form (email leads)
 
-| Env var | What to put | Example |
-|---|---|---|
-| `SMTP_HOST` | your mail server | GoDaddy Pro Email: `smtpout.secureserver.net` · Microsoft 365: `smtp.office365.com` |
-| `SMTP_PORT` | `465` (SSL) or `587` (TLS) | `465` |
-| `SMTP_USER` | the full email address to send **from** | `you@yourdomain.com` |
-| `SMTP_PASS` | that mailbox's password (or an app password if MFA is on) | — |
-| `LEAD_TO` | where leads should be delivered | `tridancontractor@gmail.com` |
-| `LEAD_FROM` | *(optional)* from-address if different from `SMTP_USER` | — |
+The form has **two delivery paths**, chosen by `site.formEndpoint` in `lib/site.ts`:
 
-The customer's email is set as **reply-to**, so hitting Reply answers the lead. A hidden honeypot
-field blocks bots. Until the env vars are set (or if a send fails), the form falls back to opening
-the visitor's email app, so a lead is never lost.
+**A) Basin (default, in use for this client)** — `formEndpoint` is set to a Basin form URL, so the
+form POSTs directly to Basin, which stores every lead in a dashboard and can email a notification.
+Free, no domain needed. Change the URL to point at a different Basin form.
 
-**Note for Microsoft 365 / Outlook:** Microsoft disables SMTP AUTH by default. Enable
-"Authenticated SMTP" for the mailbox in the Microsoft 365 admin center (and use an app password if
-MFA is on). GoDaddy's own *Professional Email* has SMTP enabled out of the box.
+**B) Resend (recommended for an agency with multiple clients)** — leave `formEndpoint` empty (`''`)
+so the form POSTs to our serverless route (`app/api/quote/route.ts`), which emails the lead via the
+**Resend API** from your own verified domain straight to the client — **no email routes through you,
+and it's reusable across every client site.**
+
+To use Resend:
+1. Sign up free at **[resend.com](https://resend.com)** → **Add Domain** → enter a domain **you own**
+   (e.g. `yourdomain.com`) → add the DNS records it shows you at your registrar. **One-time; reuse it
+   for all clients.** (Resend uses a send-only subdomain, so it won't affect your normal email.)
+2. Create an **API key** (starts with `re_`).
+3. In `lib/site.ts`, set `formEndpoint: ''`.
+4. In **Vercel → Settings → Environment Variables** set (server-side):
+
+   | Env var | Value |
+   |---|---|
+   | `RESEND_API_KEY` | your `re_...` key |
+   | `LEAD_FROM` | an address on your verified domain, e.g. `Website Leads <leads@yourdomain.com>` |
+   | `LEAD_TO` | this client's inbox, e.g. `tridancontractor@gmail.com` |
+
+5. Redeploy. **For each new client, reuse the same key/domain — only `LEAD_TO` changes.**
+
+Resend's free plan (3,000 emails/month, 100/day, 1 domain) is far more than a lead form needs, and
+the customer's email is set as **reply-to**. A hidden honeypot blocks bots, and if the route isn't
+configured or a send fails, the form falls back to opening the visitor's email app so a lead is never
+lost.
 
 ### Images
 Service/area imagery uses the **Unsplash CDN** (fast AVIF/WebP). Swap in your **own project photos**
