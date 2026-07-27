@@ -51,21 +51,25 @@ All business data lives in **`lib/`** so you edit content in one place, not acro
 | Blog posts | `lib/blog.ts` | Add cost guides / comparisons; each generates a post. |
 | Testimonials | `lib/content.ts` | ⚠️ Replace the placeholder reviews with **real** ones (schema only uses aggregate). |
 
-### Wire up the quote form (email leads via Formspree)
-The form is already coded to send leads to **Formspree** (free, no domain/DNS setup, and it keeps
-a dashboard of every submission). To turn it on:
+### Wire up the quote form (email leads via Basin)
+The form is already coded to send leads to **[Basin](https://usebasin.com)** (free, no domain/DNS,
+and it keeps a **dashboard** of every submission so you can track leads without them going to your
+own inbox). To turn it on:
 
-1. Create a free account at **[formspree.io](https://formspree.io)** and add a new form.
-2. Set the form's notification email to where you want leads (e.g. `tridancontractor@gmail.com`).
-3. Copy the form endpoint it gives you — it looks like `https://formspree.io/f/abcdwxyz`.
-4. Paste it into `lib/site.ts` → `formspreeEndpoint: '...'` (or set `NEXT_PUBLIC_FORMSPREE_ENDPOINT`
-   in Vercel → Settings → Environment Variables), then redeploy.
-5. Submit the form once to activate it, and if the first email lands in Junk/Spam, mark it
-   **"Not spam"** and add the sender to Safe Senders so future leads hit your inbox.
+1. Create a free account at **[usebasin.com](https://usebasin.com)** and add a **new form**.
+2. In the form's **settings → Email Notifications**, set **"Send emails to"** = where leads should
+   go (e.g. `tridancontractor@gmail.com`). Basin emails that address a **verification link** — click
+   it once to confirm (do this while you're logged into that inbox during setup).
+3. Set the form's **reply-to** to the **`email`** field, so hitting Reply answers the customer.
+4. Copy the form's endpoint — it looks like `https://usebasin.com/f/abcdef123456`.
+5. Paste it into `lib/site.ts` → `formEndpoint: '...'` (or set `NEXT_PUBLIC_FORM_ENDPOINT` in
+   Vercel → Settings → Environment Variables), then redeploy.
+6. Submit the form once to test. If the first email lands in Junk/Spam, mark it **"Not spam"** once
+   and it'll reach the inbox from then on. All submissions are also saved in your Basin dashboard.
 
-The customer's email is sent as the **reply-to**, so you can just hit Reply to answer a lead.
 Until an endpoint is set, the form safely falls back to opening the visitor's email app, so a lead
-is never lost.
+is never lost. Works with any form backend that accepts a JSON POST (Basin, Formspree, Formsubmit) —
+just paste a different endpoint. Web3Forms needs its access key added to the request.
 
 ### Images
 Service/area imagery uses the **Unsplash CDN** (fast AVIF/WebP). Swap in your **own project photos**

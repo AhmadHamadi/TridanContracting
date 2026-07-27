@@ -21,13 +21,15 @@ export const site = {
   email: 'tridancontractor@gmail.com',
   emailHref: 'mailto:tridancontractor@gmail.com',
 
-  // --- Quote form delivery (Formspree) ---
-  // 1. Create a free account at https://formspree.io and add a new form.
-  // 2. Copy the form endpoint it gives you (looks like https://formspree.io/f/abcdwxyz).
-  // 3. Paste it between the quotes below. Until it is set, the form falls back
-  //    to opening the visitor's email app (nothing is ever lost).
-  // You can also set it in Vercel as env var NEXT_PUBLIC_FORMSPREE_ENDPOINT instead.
-  formspreeEndpoint: '',
+  // --- Quote form delivery (Basin) ---
+  // 1. Create a free account at https://usebasin.com and add a new form.
+  // 2. In the form's settings, set "Send emails to" = the client's inbox
+  //    (e.g. tridancontractor@gmail.com) and set the reply-to to the "email" field.
+  // 3. Copy the form endpoint (looks like https://usebasin.com/f/abcdef123456).
+  // 4. Paste it between the quotes below. Until it is set, the form falls back
+  //    to opening the visitor's email app (a lead is never lost).
+  // You can also set it in Vercel as env var NEXT_PUBLIC_FORM_ENDPOINT instead.
+  formEndpoint: '',
 
   address: {
     // Home base is Milton, ON. Add the street address here when you list one

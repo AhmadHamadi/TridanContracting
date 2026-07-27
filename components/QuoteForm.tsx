@@ -13,15 +13,14 @@ type Props = {
 
 /**
  * Short, direct lead form. Research on home-services forms is consistent:
- * fewer fields convert better, so we ask only for what's needed to make
- * contact (name, phone, email) plus an optional service + note.
- * Front-end only for now: submitting opens the visitor's email client with the
- * details pre-filled (a mailto fallback so a lead is never lost). Replace the
- * handleSubmit body with a real endpoint (Formspree, Web3Forms, a Vercel route)
- * to capture leads directly.
+ * fewer fields convert better, so we ask only for what's needed to make contact.
+ * If a form endpoint is set (site.formEndpoint or NEXT_PUBLIC_FORM_ENDPOINT), the
+ * lead is POSTed as JSON to that backend (built for Basin; also works with
+ * Formspree/Formsubmit). Otherwise it opens the visitor's email client with the
+ * details pre-filled (a mailto fallback so a lead is never lost).
  */
-const FORMSPREE_ENDPOINT =
-  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || site.formspreeEndpoint || '';
+const FORM_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORM_ENDPOINT || site.formEndpoint || '';
 
 export default function QuoteForm({ compact = false, defaultService, defaultCity }: Props) {
   const [submitted, setSubmitted] = useState(false);
@@ -54,24 +53,23 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
     if (!canSubmit || sending) return;
 
     // No endpoint configured yet -> open the visitor's email app (never lose a lead).
-    if (!FORMSPREE_ENDPOINT) {
+    if (!FORM_ENDPOINT) {
       mailtoFallback();
       return;
     }
 
     setSending(true);
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           name: form.name,
           phone: form.phone,
-          email: form.email, // Formspree uses this as the reply-to address
+          email: form.email, // set this field as the reply-to in your Basin form settings
           service: form.service || 'Not specified',
           ...(defaultCity ? { city: defaultCity } : {}),
           message: form.message,
-          _subject: 'New Quote Request' + (form.service ? ' — ' + form.service : ''),
         }),
       });
       setSending(false);
