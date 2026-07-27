@@ -19,8 +19,8 @@ type Props = {
  * Formspree/Formsubmit). Otherwise it opens the visitor's email client with the
  * details pre-filled (a mailto fallback so a lead is never lost).
  */
-const FORM_ENDPOINT =
-  process.env.NEXT_PUBLIC_FORM_ENDPOINT || site.formEndpoint || '';
+// Leads are sent by our own serverless route (app/api/quote) via SMTP.
+const ENDPOINT = '/api/quote';
 
 export default function QuoteForm({ compact = false, defaultService, defaultCity }: Props) {
   const [submitted, setSubmitted] = useState(false);
@@ -31,6 +31,7 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
     email: '',
     service: defaultService ?? '',
     message: '',
+    company: '', // honeypot (kept empty by real users)
   });
 
   const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
@@ -52,30 +53,26 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
     e.preventDefault();
     if (!canSubmit || sending) return;
 
-    // No endpoint configured yet -> open the visitor's email app (never lose a lead).
-    if (!FORM_ENDPOINT) {
-      mailtoFallback();
-      return;
-    }
-
     setSending(true);
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           name: form.name,
           phone: form.phone,
-          email: form.email, // set this field as the reply-to in your Basin form settings
+          email: form.email,
           service: form.service || 'Not specified',
           ...(defaultCity ? { city: defaultCity } : {}),
           message: form.message,
+          company: form.company, // honeypot
         }),
       });
       setSending(false);
       if (res.ok) {
         setSubmitted(true);
       } else {
+        // SMTP not configured yet, or send failed -> open the email app instead.
         mailtoFallback();
       }
     } catch {
@@ -109,6 +106,17 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
       </div>
 
       <div className={`space-y-3 ${compact ? 'p-5' : 'p-6'}`}>
+        {/* Honeypot: hidden from real users, catches bots. */}
+        <input
+          type="text"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.company}
+          onChange={(e) => set('company', e.target.value)}
+          className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          aria-hidden="true"
+        />
         <label className="block">
           <span className="mb-1 block text-sm font-semibold text-ink">
             Name <span className="text-gold-dark">*</span>

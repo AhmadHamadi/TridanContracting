@@ -51,25 +51,28 @@ All business data lives in **`lib/`** so you edit content in one place, not acro
 | Blog posts | `lib/blog.ts` | Add cost guides / comparisons; each generates a post. |
 | Testimonials | `lib/content.ts` | ⚠️ Replace the placeholder reviews with **real** ones (schema only uses aggregate). |
 
-### Wire up the quote form (email leads via Basin)
-The form is already coded to send leads to **[Basin](https://usebasin.com)** (free, no domain/DNS,
-and it keeps a **dashboard** of every submission so you can track leads without them going to your
-own inbox). To turn it on:
+### Wire up the quote form (email leads via your own SMTP)
+The form POSTs to a serverless route (`app/api/quote/route.ts`) that emails the lead **from your own
+mailbox** (Outlook / GoDaddy / any SMTP) to wherever you choose — no third-party form service, no
+recipient verification. Set these as **server-side env vars in Vercel** (Settings → Environment
+Variables), then redeploy:
 
-1. Create a free account at **[usebasin.com](https://usebasin.com)** and add a **new form**.
-2. In the form's **settings → Email Notifications**, set **"Send emails to"** = where leads should
-   go (e.g. `tridancontractor@gmail.com`). Basin emails that address a **verification link** — click
-   it once to confirm (do this while you're logged into that inbox during setup).
-3. Set the form's **reply-to** to the **`email`** field, so hitting Reply answers the customer.
-4. Copy the form's endpoint — it looks like `https://usebasin.com/f/abcdef123456`.
-5. Paste it into `lib/site.ts` → `formEndpoint: '...'` (or set `NEXT_PUBLIC_FORM_ENDPOINT` in
-   Vercel → Settings → Environment Variables), then redeploy.
-6. Submit the form once to test. If the first email lands in Junk/Spam, mark it **"Not spam"** once
-   and it'll reach the inbox from then on. All submissions are also saved in your Basin dashboard.
+| Env var | What to put | Example |
+|---|---|---|
+| `SMTP_HOST` | your mail server | GoDaddy Pro Email: `smtpout.secureserver.net` · Microsoft 365: `smtp.office365.com` |
+| `SMTP_PORT` | `465` (SSL) or `587` (TLS) | `465` |
+| `SMTP_USER` | the full email address to send **from** | `you@yourdomain.com` |
+| `SMTP_PASS` | that mailbox's password (or an app password if MFA is on) | — |
+| `LEAD_TO` | where leads should be delivered | `tridancontractor@gmail.com` |
+| `LEAD_FROM` | *(optional)* from-address if different from `SMTP_USER` | — |
 
-Until an endpoint is set, the form safely falls back to opening the visitor's email app, so a lead
-is never lost. Works with any form backend that accepts a JSON POST (Basin, Formspree, Formsubmit) —
-just paste a different endpoint. Web3Forms needs its access key added to the request.
+The customer's email is set as **reply-to**, so hitting Reply answers the lead. A hidden honeypot
+field blocks bots. Until the env vars are set (or if a send fails), the form falls back to opening
+the visitor's email app, so a lead is never lost.
+
+**Note for Microsoft 365 / Outlook:** Microsoft disables SMTP AUTH by default. Enable
+"Authenticated SMTP" for the mailbox in the Microsoft 365 admin center (and use an app password if
+MFA is on). GoDaddy's own *Professional Email* has SMTP enabled out of the box.
 
 ### Images
 Service/area imagery uses the **Unsplash CDN** (fast AVIF/WebP). Swap in your **own project photos**
