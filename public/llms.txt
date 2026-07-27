@@ -1,0 +1,24 @@
+# Tridan Contracting
+
+> Licensed, insured general contractor based in Milton, Ontario, serving the Greater Toronto Area and Golden Horseshoe. One contractor for outdoor living, home renovations, and interior and exterior painting.
+
+Contact: 416-700-4230 | tridancontractor@gmail.com
+Service area: Milton (home base), plus the GTA, Halton, Peel, Durham, Hamilton, Niagara and the wider Golden Horseshoe.
+
+## Services
+- Outdoor Living: decks, interlocking and patios, pergolas and gazebos, outdoor kitchens, fences and gates, retaining walls
+- Renovations: kitchens, bathrooms, basement finishing, home additions, flooring
+- Painting: interior painting, exterior painting, cabinet refinishing
+- Landscaping: full landscape design and build
+
+## Key pages
+- Services: /services
+- Solutions (outcome-based): /solutions
+- Service areas: /service-areas
+- Financing: /financing
+- Blog and cost guides: /blog
+- FAQ: /faq
+- Contact and free quote: /contact
+
+## Trust
+Licensed and insured, WSIB covered, $5M liability, written 5-year workmanship warranty, free on-site estimates, financing available (OAC). Permits handled.
