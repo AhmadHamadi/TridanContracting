@@ -69,16 +69,19 @@ To use Resend:
    (e.g. `yourdomain.com`) → add the DNS records it shows you at your registrar. **One-time; reuse it
    for all clients.** (Resend uses a send-only subdomain, so it won't affect your normal email.)
 2. Create an **API key** (starts with `re_`).
-3. In `lib/site.ts`, set `formEndpoint: ''`.
-4. In **Vercel → Settings → Environment Variables** set (server-side):
+3. Keep `formEndpoint: ''` in `lib/site.ts` (so the form posts to `/api/quote`).
+4. Set **`LEAD_FROM`** and **`LEAD_TO`** (not secrets) directly in the code at the top of
+   **`app/api/quote/route.ts`**:
+   - `LEAD_FROM` = an address on your verified domain, e.g. `Website Leads <info@yourdomain.com>`
+   - `LEAD_TO` = this client's inbox, e.g. `tridancontractor@gmail.com`
+5. In **Vercel → Settings → Environment Variables**, add the **only secret**:
 
    | Env var | Value |
    |---|---|
    | `RESEND_API_KEY` | your `re_...` key |
-   | `LEAD_FROM` | an address on your verified domain, e.g. `Website Leads <leads@yourdomain.com>` |
-   | `LEAD_TO` | this client's inbox, e.g. `tridancontractor@gmail.com` |
 
-5. Redeploy. **For each new client, reuse the same key/domain — only `LEAD_TO` changes.**
+6. Redeploy. **For each new client, reuse the same key + verified domain — just change `LEAD_TO`
+   (and `LEAD_FROM` if you want a per-client from-address) in that site's `route.ts`.**
 
 Resend's free plan (3,000 emails/month, 100/day, 1 domain) is far more than a lead form needs, and
 the customer's email is set as **reply-to**. A hidden honeypot blocks bots, and if the route isn't

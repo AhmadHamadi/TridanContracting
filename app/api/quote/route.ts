@@ -5,6 +5,15 @@
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+// ───────────────────────────────────────────────────────────────────────────
+// PER-SITE SETTINGS (edit these two per client; they are not secrets).
+//   LEAD_FROM: any address on your VERIFIED Resend domain.
+//   LEAD_TO:   where THIS client's leads are delivered.
+// The only secret (RESEND_API_KEY) is read from the Vercel env var below.
+// ───────────────────────────────────────────────────────────────────────────
+const LEAD_FROM = 'Tridan Website Lead <info@tradeleadsmarketing.com>';
+const LEAD_TO = 'tridancontractor@gmail.com';
+
 type Lead = {
   name?: string;
   phone?: string;
@@ -37,9 +46,10 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, reason: 'missing_fields' }, { status: 422 });
   }
 
-  const { RESEND_API_KEY, LEAD_FROM, LEAD_TO } = process.env;
-  // Not configured yet -> tell the client so the form falls back to mailto.
-  if (!RESEND_API_KEY || !LEAD_FROM || !LEAD_TO) {
+  // Only the API key is a secret -> it comes from Vercel env. LEAD_FROM/LEAD_TO
+  // are set in code above. Not configured yet -> form falls back to mailto.
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  if (!RESEND_API_KEY) {
     return Response.json({ ok: false, reason: 'not_configured' }, { status: 501 });
   }
 

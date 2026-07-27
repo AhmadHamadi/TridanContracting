@@ -22,14 +22,11 @@ export const site = {
   emailHref: 'mailto:tridancontractor@gmail.com',
 
   // --- Quote form delivery ---
-  // Leads are sent to Basin (usebasin.com), which stores every submission in a
-  // dashboard and can email a notification. This endpoint is public by design
-  // (it's a form action) and Basin applies its own spam protection.
-  // To change it, paste a different Basin form URL here.
-  // (Advanced alternative: leave this empty and set SMTP_HOST/PORT/USER/PASS +
-  //  LEAD_TO env vars in Vercel to instead email leads from your own mailbox
-  //  via app/api/quote — requires a mailbox with SMTP AUTH enabled.)
-  formEndpoint: 'https://usebasin.com/f/6af6d071b74d',
+  // Empty = the form posts to our serverless route (app/api/quote), which emails
+  // the lead via Resend (LEAD_FROM/LEAD_TO are set in that route file; the secret
+  // RESEND_API_KEY is a Vercel env var). Set a Basin form URL here instead to
+  // route leads to Basin. Either way a mailto fallback runs if a send fails.
+  formEndpoint: '',
 
   address: {
     // Home base is Milton, ON. Add the street address here when you list one
