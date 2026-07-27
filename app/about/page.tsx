@@ -75,10 +75,10 @@ export default function AboutPage() {
             <SectionHeader eyebrow="Our Story" title="Craftsmanship you can count on across the GTA" />
             <div className="prose-tridan mt-6">
               <p>
-                For over {site.stats.yearsInBusiness.replace('+', '')} years, Tridan Contracting has helped
-                homeowners across the Greater Toronto Area transform their properties, from custom decks
-                and interlock patios to kitchen and basement renovations to flawless interior and exterior
-                painting.
+                For over {site.stats.yearsInBusiness.replace('+', '')} years, Tridan Contracting, owned by
+                Dani, has helped homeowners across the Greater Toronto Area transform their properties, from
+                custom decks and interlock patios to kitchen and basement renovations to flawless interior
+                and exterior painting.
               </p>
               <p>
                 What sets us apart isn’t just what we build, it’s <strong>how</strong> we build. We treat

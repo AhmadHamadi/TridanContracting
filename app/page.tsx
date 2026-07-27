@@ -37,7 +37,7 @@ export default function HomePage() {
             alt="Custom renovated kitchen by Tridan Contracting in the GTA"
             width={1920}
             priority
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-[78%_55%] md:object-center"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/70 to-ink/30" />

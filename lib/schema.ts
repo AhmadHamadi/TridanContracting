@@ -65,6 +65,7 @@ export function businessSchema() {
       'Landscaping and hardscaping',
     ],
     slogan: site.tagline,
+    founder: { '@type': 'Person', name: 'Dani' },
     sameAs: Object.values(site.social),
     aggregateRating: {
       '@type': 'AggregateRating',

@@ -57,7 +57,7 @@ export async function POST(req: Request) {
   const city = (data.city || '').trim();
 
   const text = [
-    'New quote request from the website.',
+    'You have a new enquiry from the website.',
     '',
     `Name:    ${name}`,
     `Phone:   ${phone}`,
@@ -71,34 +71,18 @@ export async function POST(req: Request) {
     `Reply to this email to respond directly to ${name}.`,
   ].join('\n');
 
-  const row = (label: string, value: string) =>
-    `<tr><td style="padding:7px 0;color:#666;width:84px;vertical-align:top">${label}</td>` +
-    `<td style="padding:7px 0;font-weight:600;color:#0a0a0a">${value}</td></tr>`;
-
-  const html = `
-  <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto">
-    <div style="background:#0a0a0a;color:#fff;padding:18px 22px;border-radius:10px 10px 0 0">
-      <div style="font-size:18px;font-weight:700">New Quote Request</div>
-      <div style="font-size:13px;color:#c7cad1;margin-top:2px">From your website</div>
-    </div>
-    <div style="border:1px solid #eee;border-top:none;border-radius:0 0 10px 10px;padding:20px 22px">
-      <p style="margin:0 0 14px;font-size:14px;color:#0a0a0a">You have a new lead 👇</p>
-      <table style="width:100%;border-collapse:collapse;font-size:14px">
-        ${row('Name', esc(name))}
-        ${row('Phone', `<a href="tel:${esc(phone)}" style="color:#9E7E15;text-decoration:none">${esc(phone)}</a>`)}
-        ${row('Email', `<a href="mailto:${esc(email)}" style="color:#9E7E15;text-decoration:none">${esc(email)}</a>`)}
-        ${row('Service', esc(service))}
-        ${city ? row('City', esc(city)) : ''}
-      </table>
-      <div style="margin-top:16px;padding-top:14px;border-top:1px solid #eee">
-        <div style="color:#666;font-size:13px;margin-bottom:6px">Message</div>
-        <div style="font-size:14px;line-height:1.6;color:#0a0a0a">${esc(message).replace(/\n/g, '<br>')}</div>
-      </div>
-      <p style="margin:18px 0 0;font-size:13px;color:#666">
-        Just hit <b>Reply</b> to respond directly to ${esc(name)}.
-      </p>
-    </div>
-  </div>`;
+  // Deliberately plain and simple, which is far less likely to be filtered as
+  // spam than a heavily-styled marketing-looking email.
+  const html =
+    `<p>You have a new enquiry from the website.</p>` +
+    `<p>Name: ${esc(name)}<br>` +
+    `Phone: ${esc(phone)}<br>` +
+    `Email: ${esc(email)}<br>` +
+    `Service: ${esc(service)}` +
+    (city ? `<br>City: ${esc(city)}` : '') +
+    `</p>` +
+    `<p>Message:<br>${esc(message).replace(/\n/g, '<br>')}</p>` +
+    `<p>Reply to this email to respond to ${esc(name)}.</p>`;
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -111,7 +95,7 @@ export async function POST(req: Request) {
         from: LEAD_FROM, // e.g. "Website Leads <leads@yourdomain.com>" (on your verified domain)
         to: [LEAD_TO], // the client's inbox
         reply_to: `${name} <${email}>`, // Reply goes straight to the customer
-        subject: `New Quote Request${service && service !== 'Not specified' ? ' — ' + service : ''} (from ${name})`,
+        subject: `New website enquiry from ${name}`,
         text,
         html,
       }),
