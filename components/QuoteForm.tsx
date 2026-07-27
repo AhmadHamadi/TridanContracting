@@ -31,7 +31,7 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
   });
 
   const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
-  const canSubmit = form.name.trim() && form.phone.trim() && form.email.trim();
+  const canSubmit = form.name.trim() && form.phone.trim() && form.email.trim() && form.message.trim();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -133,9 +133,12 @@ export default function QuoteForm({ compact = false, defaultService, defaultCity
         </label>
 
         <label className="block">
-          <span className="mb-1 block text-sm font-semibold text-ink">Message (optional)</span>
+          <span className="mb-1 block text-sm font-semibold text-ink">
+            Message <span className="text-gold-dark">*</span>
+          </span>
           <textarea
             rows={2}
+            required
             value={form.message}
             onChange={(e) => set('message', e.target.value)}
             className="input resize-none"
