@@ -29,7 +29,7 @@ export function generateMetadata({ params }: { params: { city: string } }): Meta
   if (!c) return {};
   return buildMetadata({
     title: metaTitle(`${c.name} General Contractor | Tridan Contracting`),
-    description: `Tridan Contracting serves ${c.name} with outdoor living, renovations & painting. Local projects, free estimates, licensed & insured. Call ${site.phoneDisplay}.`,
+    description: `Tridan Contracting serves ${c.name} with outdoor living & renovations. Local projects, free estimates, licensed & insured. Call ${site.phoneDisplay}.`,
     path: `/service-areas/${c.slug}`,
     imageId: c.image,
   });
@@ -71,7 +71,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </h1>
             <p className="mt-3 text-lg text-gold">{c.tagline}</p>
             <p className="mt-4 text-silver-light">
-              Outdoor living, renovations & painting for {c.name} homeowners, one licensed, insured
+              Outdoor living, renovations for {c.name} homeowners, one licensed, insured
               contractor for your whole property.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

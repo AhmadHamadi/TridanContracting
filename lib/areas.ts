@@ -41,14 +41,14 @@ export const cities: City[] = [
     name: 'Toronto',
     region: 'Toronto',
     tier: 1,
-    tagline: 'Outdoor living, renovations & painting across the city',
+    tagline: 'Outdoor living, renovations across the city',
     image: '1517090504586-fde19ea6066f',
     neighbourhoods: [
       'Rosedale', 'Forest Hill', 'Lawrence Park', 'The Bridle Path',
       'Leaside & Moore Park', 'The Beaches', 'High Park & Roncesvalles', 'Yorkville',
     ],
     intro: [
-      'Toronto homes are as varied as its neighbourhoods, century semis in Riverdale, detached estates in Lawrence Park, condos and townhomes downtown, and each comes with its own renovation realities. Tridan works across the entire city, bringing outdoor living, interior renovations and painting under one licensed, insured roof.',
+      'Toronto homes are as varied as its neighbourhoods, century semis in Riverdale, detached estates in Lawrence Park, condos and townhomes downtown, and each comes with its own renovation realities. Tridan works across the entire city, bringing outdoor living, interior renovations under one licensed, insured roof.',
       'In older Toronto neighbourhoods we routinely navigate narrow lot access, laneway constraints, heritage considerations and tight municipal setbacks. Whether it’s a Rosedale garden terrace, a Forest Hill kitchen, or a Beaches deck facing the lake winds, we build to the City of Toronto’s codes and bylaws and keep tight urban job sites clean and respectful of neighbours.',
     ],
     localNote:
@@ -93,7 +93,7 @@ export const cities: City[] = [
     name: 'Scarborough',
     region: 'Toronto',
     tier: 1,
-    tagline: 'Decks, renovations & painting across Scarborough',
+    tagline: 'Decks, renovations across Scarborough',
     image: '1416339306562-f3d12fefd36f',
     neighbourhoods: [
       'Guildwood', 'Cliffside & the Bluffs', 'Birch Cliff', 'Highland Creek',
@@ -126,7 +126,7 @@ export const cities: City[] = [
       'Mimico & New Toronto', 'Long Branch', 'Markland Wood', 'Humber Valley',
     ],
     intro: [
-      'From the tree-lined estates of the Kingsway and Humber Valley to the lakeside charm of Mimico and Long Branch, Etobicoke rewards quality craftsmanship. Tridan builds outdoor living spaces, renovates interiors and delivers premium painting throughout the district.',
+      'From the tree-lined estates of the Kingsway and Humber Valley to the lakeside charm of Mimico and Long Branch, Etobicoke rewards quality craftsmanship. Tridan builds outdoor living spaces and renovates interiors throughout the district.',
       'Etobicoke’s mature lots and river-adjacent properties are perfect for landscape transformations, decks and interlock, while its well-built homes take beautifully to kitchen, bathroom and whole-home renovations.',
     ],
     localNote:
@@ -152,7 +152,7 @@ export const cities: City[] = [
       'Sawmill Valley', 'Erindale', 'Credit Woodlands', 'Lakeview',
     ],
     intro: [
-      'Mississauga spans everything from the estate lots of Lorne Park and Mineola to the lakeside energy of Port Credit and the family neighbourhoods around Erindale and Streetsville. Tridan brings outdoor living, renovations and painting to homeowners across the city.',
+      'Mississauga spans everything from the estate lots of Lorne Park and Mineola to the lakeside energy of Port Credit and the family neighbourhoods around Erindale and Streetsville. Tridan brings outdoor living and renovations to homeowners across the city.',
       'The mature, generous lots in south Mississauga are ideal for landscape transformations, custom decks, interlock and outdoor kitchens, while the city’s solid homes are perfect for kitchen, bathroom and basement renovations that modernize without losing character.',
     ],
     localNote:
@@ -171,7 +171,7 @@ export const cities: City[] = [
     name: 'Brampton',
     region: 'Peel',
     tier: 2,
-    tagline: 'Decks, renovations & painting across Brampton',
+    tagline: 'Decks, renovations across Brampton',
     image: '1600566753086-00f18fb6b3ea',
     neighbourhoods: [
       'Credit Valley', 'Springdale', 'Bram West', 'Castlemore',
@@ -256,7 +256,7 @@ export const cities: City[] = [
       'Aldershot', 'Alton Village', 'The Orchard', 'Brant Hills',
     ],
     intro: [
-      'From the mature, lakeside streets of Roseland and Shoreacres to the newer family communities of Alton Village and Millcroft, Burlington homeowners invest in their homes, and Tridan delivers the outdoor living, renovations and painting to match.',
+      'From the mature, lakeside streets of Roseland and Shoreacres to the newer family communities of Alton Village and Millcroft, Burlington homeowners invest in their homes, and Tridan delivers the outdoor living and renovations to match.',
       'Burlington’s established south-end lots are ideal for landscape transformations, custom decks and interlock, while its solid homes across the city are perfect for kitchen, bathroom and basement renovations.',
     ],
     localNote:
@@ -331,14 +331,14 @@ export const cities: City[] = [
     name: 'Pickering',
     region: 'Durham',
     tier: 2,
-    tagline: 'Decks, renovations & painting in Pickering',
+    tagline: 'Decks, renovations in Pickering',
     image: '1416339306562-f3d12fefd36f',
     neighbourhoods: [
       'Rosebank', 'West Shore', 'Amberlea', 'Liverpool',
       'Bay Ridges', 'Dunbarton', 'Highbush', 'Rougemount',
     ],
     intro: [
-      'Pickering combines lakeside communities like West Shore and Bay Ridges with established, tree-lined neighbourhoods and newer developments to the north. Tridan brings outdoor living, renovations and painting to homeowners across the city.',
+      'Pickering combines lakeside communities like West Shore and Bay Ridges with established, tree-lined neighbourhoods and newer developments to the north. Tridan brings outdoor living and renovations to homeowners across the city.',
       'Mature lots in Rosebank, Dunbarton and Rougemount are ideal for decks, interlock and landscape builds, while Pickering’s solid homes are great candidates for kitchen, bathroom and basement renovations.',
     ],
     localNote:
@@ -383,14 +383,14 @@ export const cities: City[] = [
     name: 'Whitby',
     region: 'Durham',
     tier: 2,
-    tagline: 'Decks, renovations & painting in Whitby',
+    tagline: 'Decks, renovations in Whitby',
     image: '1600607687939-ce8a6c25118c',
     neighbourhoods: [
       'Brooklin', 'Port Whitby', 'Williamsburg', 'Rolling Acres',
       'Pringle Creek', 'Downtown Whitby', 'Blue Grass Meadows', 'Taunton North',
     ],
     intro: [
-      'From the historic charm of downtown Whitby and the growing community of Brooklin to newer family neighbourhoods, Whitby homeowners take pride in their properties, and Tridan delivers the outdoor living, renovations and painting to match.',
+      'From the historic charm of downtown Whitby and the growing community of Brooklin to newer family neighbourhoods, Whitby homeowners take pride in their properties, and Tridan delivers the outdoor living and renovations to match.',
       'Brooklin’s larger newer lots are ideal for decks, interlock and full landscape builds, while established Whitby homes are great for kitchen, bathroom and basement renovations.',
     ],
     localNote:
@@ -416,7 +416,7 @@ export const cities: City[] = [
       'Northglen', 'Donevan', 'Lakeview', 'Central Oshawa',
     ],
     intro: [
-      'Oshawa offers exceptional value across the GTA’s east end, with everything from established century homes near downtown to fast-growing communities in the north like Windfields and Kedron. Tridan brings premium outdoor living, renovations and painting to the whole city.',
+      'Oshawa offers exceptional value across the GTA’s east end, with everything from established century homes near downtown to fast-growing communities in the north like Windfields and Kedron. Tridan brings premium outdoor living and renovations to the whole city.',
       'Newer north-Oshawa lots are ideal for decks, interlock and landscaping, while established homes are perfect candidates for kitchen, bathroom and basement renovations, including legal second suites.',
     ],
     localNote:
@@ -463,14 +463,14 @@ export const cities: City[] = [
     name: 'Hamilton',
     region: 'Hamilton',
     tier: 2,
-    tagline: 'Outdoor living, renovations & painting across Hamilton',
+    tagline: 'Outdoor living, renovations across Hamilton',
     image: '1613490493576-7fde63acd811',
     neighbourhoods: [
       'Durand', 'Kirkendall', 'Westdale', 'Corktown',
       'Strathcona', 'North End', 'East Mountain', 'West Mountain',
     ],
     intro: [
-      'Hamilton is a city of two halves, the lower city and the Mountain, split by the Niagara Escarpment, and that geography shapes almost every project we take on here. Tridan builds outdoor living spaces, renovations and painting across the whole city, from the heritage streets of Durand and Kirkendall to the newer subdivisions up on the Mountain.',
+      'Hamilton is a city of two halves, the lower city and the Mountain, split by the Niagara Escarpment, and that geography shapes almost every project we take on here. Tridan builds outdoor living spaces, renovations across the whole city, from the heritage streets of Durand and Kirkendall to the newer subdivisions up on the Mountain.',
       'Much of the lower city is genuinely old. Durand holds one of the densest concentrations of early-1900s homes in the country, and Corktown and Strathcona are full of 19th-century brick. That often means knob-and-tube wiring, balloon framing and heritage considerations, all of which we know how to handle properly.',
     ],
     localNote:
@@ -647,14 +647,14 @@ export const cities: City[] = [
     name: 'Niagara Falls',
     region: 'Niagara',
     tier: 2,
-    tagline: 'Decks, renovations & painting in Niagara Falls',
+    tagline: 'Decks, renovations in Niagara Falls',
     image: '1416339306562-f3d12fefd36f',
     neighbourhoods: [
       'Chippawa', 'Stamford', 'Willoughby', 'Drummondville',
       'Fallsview', 'Lundy’s Lane', 'Mount Carmel', 'Chippawa Riverfront',
     ],
     intro: [
-      'Beyond the tourist districts, Niagara Falls is a city of established residential neighbourhoods like Stamford, Chippawa and Willoughby. Tridan builds outdoor living spaces, renovations and painting for homeowners across the residential city.',
+      'Beyond the tourist districts, Niagara Falls is a city of established residential neighbourhoods like Stamford, Chippawa and Willoughby. Tridan builds outdoor living spaces, renovations for homeowners across the residential city.',
       'Built along the Niagara Gorge and River, the city brings grade, setback and slope-stability considerations near the water. River Parkway and Chippawa riverfront lots in particular sit in regulated areas that we plan and permit around.',
     ],
     localNote:
@@ -725,14 +725,14 @@ export const cities: City[] = [
     name: 'Welland',
     region: 'Niagara',
     tier: 3,
-    tagline: 'Decks, renovations & painting in Welland',
+    tagline: 'Decks, renovations in Welland',
     image: '1600566753086-00f18fb6b3ea',
     neighbourhoods: [
       'Downtown', 'Dain City', 'Cooks Mills', 'Crowland',
       'Chippawa Park', 'Woodlawn', 'South Pelham', 'Northgate',
     ],
     intro: [
-      'Built around the historic Welland Canal, Welland offers some of the most affordable family housing in Niagara and plenty of homes ready for outdoor living and renovation. Tridan builds decks, renovations and painting throughout the city.',
+      'Built around the historic Welland Canal, Welland offers some of the most affordable family housing in Niagara and plenty of homes ready for outdoor living and renovation. Tridan builds decks, renovations throughout the city.',
       'Canal-adjacent lots along the Welland Recreational Waterway carry water-proximity and grading considerations, and the city’s heavy Haldimand clay drains slowly, which makes foundation, footing and drainage work especially important here.',
     ],
     localNote:
@@ -831,14 +831,14 @@ export const cities: City[] = [
     name: 'Kitchener',
     region: 'Waterloo',
     tier: 3,
-    tagline: 'Decks, renovations & painting across Kitchener',
+    tagline: 'Decks, renovations across Kitchener',
     image: '1600566753086-00f18fb6b3ea',
     neighbourhoods: [
       'Doon', 'Forest Heights', 'Stanley Park', 'Bridgeport',
       'Victoria Park', 'Rosemount', 'Huron Park', 'Country Hills',
     ],
     intro: [
-      'A broad, growing city at the heart of Waterloo Region, Kitchener runs from century homes near Victoria Park and Bridgeport to newer subdivisions in Doon and the south end. Tridan builds outdoor living, renovations and painting across the whole city.',
+      'A broad, growing city at the heart of Waterloo Region, Kitchener runs from century homes near Victoria Park and Bridgeport to newer subdivisions in Doon and the south end. Tridan builds outdoor living and renovations across the whole city.',
       'The Grand River runs the east and north edge, so riverside and low-lying lots in Bridgeport, Freeport and Doon fall under conservation regulation. The older Victoria Park and Bridgeport areas hold century homes that reward period-sensitive work.',
     ],
     localNote:
@@ -911,14 +911,14 @@ export const cities: City[] = [
     name: 'Brantford',
     region: 'Brant',
     tier: 3,
-    tagline: 'Decks, renovations & painting in Brantford',
+    tagline: 'Decks, renovations in Brantford',
     image: '1416339306562-f3d12fefd36f',
     neighbourhoods: [
       'Eagle Place', 'Echo Place', 'West Brant', 'Terrace Hill',
       'Holmedale', 'Henderson Survey', 'Brier Park', 'Shellard Lane',
     ],
     intro: [
-      'A single-tier city on the Grand River, Brantford offers strong value and a deep stock of century brick homes alongside fast-growing new subdivisions in West Brant and the Shellard Lane corridor. Tridan builds outdoor living, renovations and painting across the city.',
+      'A single-tier city on the Grand River, Brantford offers strong value and a deep stock of century brick homes alongside fast-growing new subdivisions in West Brant and the Shellard Lane corridor. Tridan builds outdoor living and renovations across the city.',
       'The Grand River bisects Brantford, and parts of Eagle Place, Holmedale and riverside West Brant sit in or near the regulated floodplain. Older core districts carry century brick homes with the knob-and-tube, plaster and older foundations that come with them.',
     ],
     localNote:

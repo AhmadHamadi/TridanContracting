@@ -24,7 +24,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'Tridan Contracting | GTA Outdoor Living, Renovations & Painting',
+    default: 'Tridan Contracting | GTA Outdoor Living & Home Renovations',
     template: '%s | Tridan Contracting',
   },
   description: site.description,
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     'home renovations Toronto',
     'interlocking contractors',
     'kitchen renovation GTA',
-    'painting contractor Toronto',
+    'landscaping contractors GTA',
   ],
   alternates: { canonical: '/' },
   robots: {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     locale: 'en_CA',
     url: site.url,
     siteName: site.name,
-    title: 'Tridan Contracting | GTA Outdoor Living, Renovations & Painting',
+    title: 'Tridan Contracting | GTA Outdoor Living & Home Renovations',
     description: site.description,
     images: [{ url: '/tridan-logo.png', width: 1240, height: 1240, alt: site.name }],
   },

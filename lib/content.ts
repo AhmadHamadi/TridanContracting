@@ -33,7 +33,7 @@ export const testimonials: Testimonial[] = [
     service: 'Kitchen Renovation',
     rating: 5,
     quote:
-      'One contractor, one price, zero surprises. They handled permits, cabinets, counters and even the painting. Our kitchen looks like it belongs in a magazine.',
+      'One contractor, one price, zero surprises. They handled permits, cabinets, counters and all the finishing. Our kitchen looks like it belongs in a magazine.',
   },
   {
     name: 'Michael T.',
@@ -54,10 +54,10 @@ export const testimonials: Testimonial[] = [
   {
     name: 'Andrew P.',
     location: 'The Kingsway, Etobicoke',
-    service: 'Exterior Painting',
+    service: 'Interlock Driveway & Walkway',
     rating: 5,
     quote:
-      'The prep work was incredible, power-washing, scraping, caulking, priming, before they even opened the paint. The house looks brand new and the lines are razor sharp.',
+      'The crew was meticulous with the base and the cuts, and the finished driveway is flawless. Clean site every day and done on schedule. Couldn’t be happier.',
   },
   {
     name: 'Lisa & Mark H.',

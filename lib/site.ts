@@ -7,11 +7,11 @@ export const site = {
   name: 'Tridan Contracting',
   legalName: 'Tridan Contracting',
   shortName: 'Tridan',
-  tagline: 'Outdoor Living • Renovations • Painting',
+  tagline: 'Outdoor Living • Renovations • Landscaping',
   // Update this to your real deployed domain before/after going live on Vercel.
   url: 'https://www.tridancontracting.ca',
   description:
-    'Tridan Contracting is a licensed, insured general contractor based in Milton and serving the GTA and Golden Horseshoe. We design and build outdoor living spaces, interior renovations, and interior and exterior painting. One contractor for your whole property.',
+    'Tridan Contracting is a licensed, insured general contractor based in Milton and serving the GTA and Golden Horseshoe. We design and build outdoor living spaces, complete interior renovations, landscaping, and electrical and plumbing. One contractor for your whole property.',
 
   // --- NAP (Name / Address / Phone) — must match GBP exactly ---
   phone: '416-700-4230',

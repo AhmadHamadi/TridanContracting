@@ -11,7 +11,7 @@ import { site } from '@/lib/site';
 export const metadata: Metadata = buildMetadata({
   title: 'Reviews | What GTA Homeowners Say About Tridan',
   description:
-    'Read reviews from homeowners across the GTA who trusted Tridan Contracting for their outdoor living, renovation and painting projects. Rated 5 stars.',
+    'Read reviews from homeowners across the GTA who trusted Tridan Contracting for their outdoor living and renovation projects. Rated 5 stars.',
   path: '/reviews',
 });
 

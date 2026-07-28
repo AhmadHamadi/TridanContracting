@@ -33,14 +33,9 @@ export const faqBank = {
   ],
   interior: [
     { q: 'How long does a kitchen renovation take?', a: 'A minor, same-layout refresh usually takes two to four weeks, while a major renovation involving layout changes, plumbing or electrical can run three to six weeks or more depending on scope and material lead times.' },
-    { q: 'Does a kitchen renovation add value to my home?', a: 'Yes, though returns vary. Minor kitchen updates recoup a high share of their cost, while high-end full remodels return less. Lighter updates like refinishing, hardware and paint tend to give the best return.' },
+    { q: 'Does a kitchen renovation add value to my home?', a: 'Yes, though returns vary. Minor kitchen updates recoup a high share of their cost, while high-end full remodels return less. Lighter updates like refinishing, hardware and fixtures tend to give the best return.' },
     { q: 'What is the minimum ceiling height for a legal basement apartment?', a: 'The Ontario Building Code requires 1.95 m, about 6 feet 5 inches, over at least 75% of the habitable floor area. In older GTA homes this is the most common dealbreaker, and fixing it via underpinning adds significant cost.' },
     { q: 'How much does it cost to open up my kitchen and living room?', a: 'Removing a wall runs from about $3,500 for a simple single-storey wall up to $30,000 or more for long two-storey spans. Most two-storey GTA homes land in the $8,000 to $20,000 range once beam, posts, permit and finishing are included.' },
-  ],
-  painting: [
-    { q: 'How much does it cost to paint the interior of a house in Toronto?', a: 'Interior painting generally runs about $1.80 to $3.00 per square foot on a whole-house project, or roughly $300 to $800 per room. Single rooms cost more per square foot because setup time is similar regardless of size.' },
-    { q: 'Does painting increase home value?', a: 'Yes. Fresh, neutral paint is one of the highest-return updates available. It modernizes a space cheaply and improves first impressions for buyers, which is why it is a staple of pre-sale prep.' },
-    { q: 'When is the cheapest time to paint my house?', a: 'Interior painting is often 15 to 25% cheaper in the slower fall-to-winter window, and bundling several rooms into one job lowers the per-room cost since the setup is shared.' },
   ],
   warranty: [
     { q: 'What warranty should a contractor provide?', a: 'Reputable GTA contractors typically offer a workmanship warranty of two to five years, on top of any manufacturer warranties on materials. Always get the warranty terms in writing in your contract. Tridan backs every project with a written five-year workmanship warranty.' },

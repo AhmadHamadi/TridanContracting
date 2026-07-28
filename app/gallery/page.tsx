@@ -11,7 +11,7 @@ import { faqsFor } from '@/lib/faqbank';
 export const metadata: Metadata = buildMetadata({
   title: 'Project Gallery | Tridan Contracting Portfolio',
   description:
-    'Browse Tridan Contracting’s portfolio of outdoor living, renovation and painting projects across the GTA, decks, patios, kitchens, bathrooms, basements and more.',
+    'Browse Tridan Contracting’s portfolio of outdoor living and renovation projects across the GTA, decks, patios, kitchens, bathrooms, basements and more.',
   path: '/gallery',
   imageId: '1617228069096-4638a7ffc906',
 });
@@ -45,7 +45,7 @@ export default function GalleryPage() {
               as="h1"
               eyebrow="Our Work"
               title="Project gallery"
-              intro="A look at the outdoor living spaces, renovations and painting projects we’ve built for homeowners across the GTA. Real craftsmanship, built to last."
+              intro="A look at the outdoor living spaces, renovations projects we’ve built for homeowners across the GTA. Real craftsmanship, built to last."
             />
           </div>
         </div>

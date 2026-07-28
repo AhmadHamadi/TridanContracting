@@ -19,7 +19,7 @@ import { faqsFor } from '@/lib/faqbank';
 export const metadata: Metadata = buildMetadata({
   title: 'Our Services | Tridan Contracting',
   description:
-    'Outdoor living, home renovations & painting across the GTA. Decks, patios, kitchens, bathrooms, basements, additions & more, one licensed contractor for your whole property.',
+    'Outdoor living, home renovations across the GTA. Decks, patios, kitchens, bathrooms, basements, additions & more, one licensed contractor for your whole property.',
   path: '/services',
 });
 
@@ -44,7 +44,7 @@ export default function ServicesPage() {
         <div className="container-x relative py-14 lg:py-20">
           <Breadcrumbs items={crumbs} />
           <h1 className="mt-4 max-w-3xl font-serif text-4xl font-semibold text-white sm:text-5xl text-balance">
-            One contractor for outdoor living, renovations & painting
+            One contractor for outdoor living & renovations
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-silver-light">
             From backyard to basement, Tridan designs and builds it all, to code, on budget, and

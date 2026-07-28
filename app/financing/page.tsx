@@ -21,7 +21,7 @@ const financingFaqs = [
   { q: 'How does contractor financing work?', a: 'After we scope your project and provide a fixed quote, you can apply for financing through our lending partners. Once approved, your project cost is spread into affordable monthly payments so you don’t have to pay everything upfront.' },
   { q: 'What credit is needed to qualify?', a: 'Financing is offered on approved credit (OAC). A range of options exist for different credit profiles, the quickest way to know your options is to apply, which takes just a few minutes.' },
   { q: 'Are there prepayment penalties?', a: 'Our preferred financing options have no prepayment penalties, so you can pay off your balance early and save on interest whenever you like.' },
-  { q: 'What project sizes can be financed?', a: 'Financing works well for everything from mid-sized projects like decks, bathrooms and painting to large renovations and additions. Ask us and we’ll match you to the right option.' },
+  { q: 'What project sizes can be financed?', a: 'Financing works well for everything from mid-sized projects like decks, bathrooms and basements to large renovations and additions. Ask us and we’ll match you to the right option.' },
 ];
 
 export default function FinancingPage() {

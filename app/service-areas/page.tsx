@@ -12,7 +12,7 @@ import { faqsFor } from '@/lib/faqbank';
 export const metadata: Metadata = buildMetadata({
   title: 'Service Areas | Tridan Contracting Across the GTA',
   description:
-    'Tridan Contracting serves the Greater Toronto Area, Toronto, Mississauga, Oakville, Burlington, Whitby, Oshawa & more. Find your city for local outdoor living, renovations & painting.',
+    'Tridan Contracting serves the Greater Toronto Area, Toronto, Mississauga, Oakville, Burlington, Whitby, Oshawa & more. Find your city for local outdoor living & renovations.',
   path: '/service-areas',
 });
 
@@ -39,7 +39,7 @@ export default function ServiceAreasPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-silver-light">
             From Toronto’s core to Halton, Peel and Durham, Tridan brings premium outdoor living,
-            renovations and painting to your neighbourhood, with local knowledge of permits, bylaws
+            renovations to your neighbourhood, with local knowledge of permits, bylaws
             and the way GTA properties are built. Find your city below.
           </p>
         </div>

@@ -12,7 +12,7 @@ const popularServices = [
   { slug: 'kitchen-renovations', name: 'Kitchen Renovations' },
   { slug: 'bathroom-renovations', name: 'Bathroom Renovations' },
   { slug: 'basement-finishing', name: 'Basement Finishing' },
-  { slug: 'interior-painting', name: 'Interior Painting' },
+  { slug: 'landscape-design', name: 'Landscape Design' },
 ];
 
 function SocialIcon({ kind }: { kind: 'instagram' | 'facebook' | 'houzz' }) {

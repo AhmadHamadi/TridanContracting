@@ -10,7 +10,7 @@ import { site } from '@/lib/site';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact & Free Quote | Tridan Contracting GTA',
   description:
-    'Get your free, no-obligation quote from Tridan Contracting. Call 416-700-4230 or request a quote online. Outdoor living, renovations & painting across the GTA.',
+    'Get your free, no-obligation quote from Tridan Contracting. Call 416-700-4230 or request a quote online. Outdoor living, renovations across the GTA.',
   path: '/contact',
 });
 

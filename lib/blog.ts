@@ -130,12 +130,12 @@ export const posts: Post[] = [
     readMinutes: 8,
     image: '1556911220-bff31c812dba',
     author: 'Tridan Contracting',
-    related: ['kitchen-renovations', 'cabinet-refinishing', 'flooring'],
+    related: ['kitchen-renovations', 'flooring'],
     body: `
 <p>The kitchen is the heart of the home and, dollar for dollar, one of the best renovation investments you can make. Here’s what kitchen renovations realistically cost across the GTA in 2026.</p>
 <h2>Typical price tiers</h2>
 <ul>
-<li><strong>Cosmetic refresh</strong> (paint, cabinet refinishing, hardware, backsplash, fixtures): $8,000–$20,000</li>
+<li><strong>Cosmetic refresh</strong> (cabinet updates, hardware, backsplash, fixtures): $8,000–$20,000</li>
 <li><strong>Mid-range renovation</strong> (new semi-custom cabinets, quartz counters, tile, lighting, some layout tweaks): $30,000–$55,000</li>
 <li><strong>Full custom / gut renovation</strong> (moved walls, custom cabinetry, high-end appliances, premium finishes): $60,000–$90,000+</li>
 </ul>
@@ -152,34 +152,6 @@ export const posts: Post[] = [
 <p>Most full kitchens take 4–8 weeks of construction once materials are in. We give you a day-by-day schedule and one point of contact so you always know what’s happening.</p>
 <h2>Get a fixed price</h2>
 <p>Every kitchen is different. <a href="/services/kitchen-renovations">See our kitchen renovation service</a> or <a href="/contact">request a free consultation</a> for a detailed, fixed-price quote.</p>
-`,
-  },
-  {
-    slug: 'exterior-painting-prep-guide',
-    title: 'Why Exterior Paint Fails, and How Proper Prep Prevents It',
-    excerpt:
-      'Peeling exterior paint almost always traces back to skipped prep. Here’s what proper preparation looks like and why it determines how long your paint lasts.',
-    category: 'How-To & Maintenance',
-    date: '2026-03-20',
-    dateLabel: 'March 20, 2026',
-    readMinutes: 6,
-    image: '1541888946425-d81bb19240f5',
-    author: 'Tridan Contracting',
-    related: ['exterior-painting', 'interior-painting', 'home-additions'],
-    body: `
-<p>If exterior paint peels, blisters or fades within a couple of years, the paint isn’t usually the problem, the preparation was. Here’s what separates a paint job that lasts three years from one that lasts ten.</p>
-<h2>Step 1: Cleaning</h2>
-<p>Paint can’t bond to dirt, chalk or mildew. We power-wash the entire surface and let it fully dry, painting over a damp or dirty surface guarantees early failure.</p>
-<h2>Step 2: Scraping and sanding</h2>
-<p>All loose and failing paint has to come off. We scrape and sand back to a sound surface so the new coating bonds to something solid, then feather the edges so repairs don’t telegraph through.</p>
-<h2>Step 3: Repairs and caulking</h2>
-<p>We fill cracks and holes, replace rotted trim, and re-caulk gaps around windows, doors and joints. Caulking isn’t cosmetic, it keeps water out of the wall assembly, which is what causes peeling in the first place.</p>
-<h2>Step 4: Priming</h2>
-<p>Bare wood, stains and repairs get spot- or full-primed so the topcoat adheres and covers evenly. Skipping primer on bare areas is a classic corner-cut.</p>
-<h2>Step 5: Quality paint, applied in the right conditions</h2>
-<p>We use exterior-grade coatings and schedule around weather, you can’t properly cure paint that’s applied in the rain, in extreme heat, or too late in the fall. In the GTA, that means most exterior work happens May through October.</p>
-<h2>The bottom line</h2>
-<p>Exterior painting is 80% preparation. When someone quotes a suspiciously low price and a two-day turnaround, they’re almost always skipping the steps above. <a href="/services/exterior-painting">See how we approach exterior painting</a> or <a href="/contact">get a free quote</a>.</p>
 `,
   },
   {

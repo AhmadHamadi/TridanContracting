@@ -60,9 +60,8 @@ export default function HomePage() {
             </h1>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-silver-light">
               One trusted contractor for your whole property, custom{' '}
-              <strong className="font-semibold text-white">outdoor living</strong>,{' '}
-              <strong className="font-semibold text-white">renovations</strong> and{' '}
-              <strong className="font-semibold text-white">painting</strong>. Licensed, insured, and
+              <strong className="font-semibold text-white">outdoor living</strong> and{' '}
+              <strong className="font-semibold text-white">renovations</strong>. Licensed, insured, and
               backed by a {site.stats.warrantyYears}-year workmanship warranty.
             </p>
 
@@ -155,7 +154,7 @@ export default function HomePage() {
                 {
                   icon: 'hammer' as const,
                   t: 'One contractor, whole property',
-                  d: 'Deck, kitchen, basement and paint, managed by one team. No juggling trades or finger-pointing.',
+                  d: 'Deck, kitchen, basement and more, managed by one team. No juggling trades or finger-pointing.',
                 },
                 {
                   icon: 'shield' as const,

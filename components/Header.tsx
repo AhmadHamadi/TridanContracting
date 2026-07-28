@@ -91,7 +91,7 @@ export default function Header() {
               onLeave={() => setOpenMenu(null)}
               active={pathname.startsWith('/services')}
             >
-              <div className="grid grid-cols-5 gap-x-5 gap-y-6">
+              <div className="grid grid-cols-4 gap-x-5 gap-y-6">
                 {categories.map((cat) => (
                   <div key={cat.slug}>
                     <Link
@@ -121,7 +121,7 @@ export default function Header() {
               <MegaFooter
                 href="/services"
                 label="View all services"
-                note="One contractor for outdoor living, renovations & painting."
+                note="One contractor for outdoor living & renovations."
               />
             </MegaTrigger>
 

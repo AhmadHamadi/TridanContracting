@@ -21,7 +21,7 @@ import { site } from '@/lib/site';
 export const metadata: Metadata = buildMetadata({
   title: 'About Tridan Contracting | Licensed GTA General Contractor',
   description:
-    'Meet Tridan Contracting, a licensed, insured GTA general contractor delivering outdoor living, renovations & painting with craftsmanship, transparency and a 5-year warranty.',
+    'Meet Tridan Contracting, a licensed, insured GTA general contractor delivering outdoor living & renovations with craftsmanship, transparency and a 5-year warranty.',
   path: '/about',
   imageId: '1600607687939-ce8a6c25118c',
 });
@@ -54,7 +54,7 @@ export default function AboutPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-silver-light">
             Tridan Contracting was built on a simple idea: homeowners deserve one trusted team that can
-            handle it all, outdoor living, renovations and painting, with the craftsmanship, honesty
+            handle it all, outdoor living and renovations, with the craftsmanship, honesty
             and accountability the trades are too often missing.
           </p>
         </div>
@@ -77,15 +77,14 @@ export default function AboutPage() {
               <p>
                 For over {site.stats.yearsInBusiness.replace('+', '')} years, Tridan Contracting, owned by
                 Dani, has helped homeowners across the Greater Toronto Area transform their properties, from
-                custom decks and interlock patios to kitchen and basement renovations to flawless interior
-                and exterior painting.
+                custom decks and interlock patios to kitchen, bathroom and basement renovations.
               </p>
               <p>
                 What sets us apart isn’t just what we build, it’s <strong>how</strong> we build. We treat
                 every project like it’s our own home: proper footings and bases, real waterproofing, honest
-                fixed pricing, and a clean, respectful job site. And because we handle outdoor living,
-                renovations and painting under one roof, you get one accountable team instead of juggling
-                three different trades.
+                fixed pricing, and a clean, respectful job site. And because we handle outdoor living and
+                renovations under one roof, you get one accountable team instead of juggling
+                several different trades.
               </p>
               <p>
                 We’re fully licensed and insured, carry {site.stats.liabilityInsured} in liability coverage
